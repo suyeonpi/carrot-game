@@ -1,11 +1,10 @@
 'use strict';
 
+import PopUp from './popup.js';
+
 const gameBtn = document.querySelector('.game__button');
 const gameTimer = document.querySelector('.game__timer');
 const gameScore = document.querySelector('.game__score');
-const popUp = document.querySelector('.pop-up');
-const popUpMessage = document.querySelector('.pop-up__message')
-const popUpRefresh = document.querySelector('.pop-up__refresh');
 
 const gameField = document.querySelector('.game__field');
 const fieldRect = gameField.getBoundingClientRect();
@@ -25,6 +24,11 @@ let started = false;
 let score = 0;
 let timer = undefined;
 
+const gameFinishBanner = new PopUp();
+gameFinishBanner.setClickListener(() => {
+  startGame();
+})
+
 gameBtn.addEventListener('click', ()=> {
   if(started){
     stopGame();
@@ -35,10 +39,6 @@ gameBtn.addEventListener('click', ()=> {
 
 gameField.addEventListener('click', onFieldClick)
 
-popUpRefresh.addEventListener('click', () => {
-  startGame();
-  hidePopUp();
-})
 
 function onFieldClick(event) {
   if(!started) return;
@@ -70,7 +70,7 @@ function stopGame() {
   started = false;
   stopGameTimer();
   hideGameButton();
-  showPopUpWithText('REPLAY ❓')
+  gameFinishBanner.showWithText('REPLAY ❓');
   stopSound(bgSound)
   playSound(alertSound);
 }
@@ -79,7 +79,7 @@ function finishGame(win) {
   started = false;
   hideGameButton();
   stopGameTimer();
-  showPopUpWithText(win ? 'YOU WON ❗️' : 'YOU LOST 😰');
+  gameFinishBanner.showWithText(win ? 'YOU WON ❗️' : 'YOU LOST 😰');
   playSound(win ? winSound : bugSound);
   stopSound(bgSound)
 }
@@ -87,15 +87,6 @@ function finishGame(win) {
 
 function stopGameTimer() {
   clearInterval(timer);
-}
-
-function showPopUpWithText(text) {
-  popUp.classList.remove('pop-up--hide');
-  popUpMessage.innerText = text;
-}
-
-function hidePopUp() {
-  popUp.classList.add('pop-up--hide');
 }
 
 function updateScoreBoard() {
