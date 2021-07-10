@@ -12,7 +12,6 @@ export function playBug() {
   playSound(bugSound)
 }
 
-
 export function playBackground() {
   playSound(bgSound)
 }
