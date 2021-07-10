@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background-color: black;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.game {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 600px;
+  background: url(img/background.png) center/cover;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.game__header {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.game__button {
+  width: 60px;
+  height: 60px;
+  border: solid black 4px;
+  border-radius: 15px;
+  font-size: 24px;
+  background-color: wheat;
+  transition: all 200ms ease-in;
+  margin-top: 10px;
+}
+
+.game__button:hover {
+  transform: scale(1.1)
+}
+
+.game__timer {
+  width: 100px;
+  height: 50px;
+  border: solid black 5px;
+  border-radius: 20px;
+  font-size: 32px;
+  display: block;
+  text-align: center;
+  line-height: 50px;
+  background-color: white;
+  margin-top: 10px;
+  visibility: hidden;
+  user-select: none;
+  cursor: none;
+}
+
+.game__score {
+  width: 60px;
+  height: 60px;
+  border: solid black 3px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 60px;    
+  font-size: 40px;
+  background-color: darksalmon;
+  color: white;
+  margin-top: 10px;
+  visibility: hidden;
+  user-select: none;
+  cursor: none;
+}
+
+.game__field {
+  width: 100%;
+  height: 100%;
+  margin-top: 100px;
+  position: relative;
+}
+
+.pop-up {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 150px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.pop-up--hide {
+  display: none;
+}
+
+.pop-up__refresh {
+  width: 70px;
+  height: 70px;
+  border: solid black 4px;
+  border-radius: 15px;
+  font-size: 25px;
+  background-color: orange;
+  transition: all 100ms ease-in;
+}
+
+.pop-up__refresh:hover {
+  transform: scale(1.1)
+}
+
+.pop-up__message {
+  font-size: 30px;
+  color: white;
+  user-select: none;
+}
+
+.carrot, 
+.bug {
+  transition: all 100ms ease-in;
+}
+
+.carrot:hover,
+.bug:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
