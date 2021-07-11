@@ -44,7 +44,7 @@ export class Game {
     this.gameBtn = document.querySelector('.game__button');
     this.gameTimer = document.querySelector('.game__timer');
     this.gameScore = document.querySelector('.game__score');
-    this.gameBtn.addEventListener('click',() =>{
+    this.gameBtn.addEventListener('click',() => {
       if(this.started){
         this.stop(Reason.cancel);
       } else {
@@ -72,7 +72,7 @@ export class Game {
       }
     } else if (item === ItemType.bug) {
       sound.playBug();
-      this.stop(Rason.lose);
+      this.stop(Reason.lose);
     }
   }
 
@@ -109,7 +109,7 @@ export class Game {
     this.timer = setInterval(()=> {
       if(remainingTimeSec <= 0) {
         clearInterval(this.timer);
-        this.finish(this.score === this.carrotCount ? Reason.win : Reason.lose);
+        this.stop(this.score === this.carrotCount ? Reason.win : Reason.lose);
         return;
       }
       this.updateTimerText(--remainingTimeSec);
@@ -131,7 +131,7 @@ export class Game {
   showStopButton() {
     const icon = this.gameBtn.querySelector('.fas');
     icon.classList.add('fa-stop');
-    icon.classList.remove('fa-play')
+    icon.classList.remove('fa-play');
     this.gameBtn.style.visibility = 'visible';
   }
 
